@@ -3,9 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conteúdo Indisponível</title>
+    <title>Aviso Importante</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border-top: 5px solid #2b5c8f;
+        }
+
+        .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #1a2530;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        p {
+            font-size: 0.95rem;
+            color: #666666;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-    <h1>Conteúdo indisponível devido ao período eleitoral.</h1>
+
+    <div class="card">
+        <div class="icon">⚖️</div>
+        <h1>Conteúdo Indisponível</h1>
+        <p>Em cumprimento à legislação eleitoral, este site permanecerá indisponível temporariamente durante o período de campanha.</p>
+    </div>
+
 </body>
 </html>
