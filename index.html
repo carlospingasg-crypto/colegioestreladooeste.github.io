@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colégio Estadual do Campo Estrela do Oeste</title>
+    <meta
+      name="description"
+      content="Conheça o Colégio Estadual do Campo Estrela do Oeste, escola pública estadual de Santa Maria do Oeste, Paraná, com Ensino Fundamental e Médio, AEE, tecnologia, alimentação escolar e forte vínculo com a comunidade rural."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --verde-escuro: #0f5132;
+        --verde: #1d7a4c;
+        --verde-claro: #dff5e8;
+        --verde-agua: #7bdcb5;
+        --amarelo: #f5c451;
+        --terra: #f6efe2;
+        --cinza-escuro: #1b1f23;
+        --cinza: #5f6772;
+        --cinza-claro: #edf1f3;
+        --branco: #ffffff;
+        --sombra: 0 18px 45px rgba(9, 40, 28, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(180deg, #f5faf7 0%, #f4f8f5 100%);
+        color: var(--cinza-escuro);
+        line-height: 1.6;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        background: rgba(11, 48, 32, 0.96);
+        color: var(--branco);
+        padding: 14px 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+      }
+
+      .topbar-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--amarelo), #ffd96a);
+        color: var(--verde-escuro);
+        display: grid;
+        place-items: center;
+        font-size: 1.3rem;
+        box-shadow: inset 0 0 0 2px rgba(255,255,255,0.3);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: rgba(255,255,255,0.88);
+        font-size: 0.96rem;
+        font-weight: 600;
+        transition: 0.2s ease;
+      }
+
+      .nav a:hover {
+        color: var(--amarelo);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0.95rem 1.4rem;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--amarelo), #f0b941);
+        color: var(--verde-escuro);
+        box-shadow: 0 10px 25px rgba(245, 196, 81, 0.34);
+      }
+
+      .btn-ghost {
+        background: rgba(255,255,255,0.08);
+        color: var(--branco);
+        border: 1px solid rgba(255,255,255,0.2);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at top left, rgba(123, 220, 181, 0.4), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(245, 196, 81, 0.2), transparent 20%),
+          linear-gradient(135deg, #0b3628 0%, #124f38 32%, #0d7a59 100%);
+        color: var(--branco);
+      }
+
+      .hero::before,
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.05);
+        filter: blur(30px);
+      }
+
+      .hero::before {
+        top: -180px;
+        right: -70px;
+      }
+
+      .hero::after {
+        left: -120px;
+        bottom: -200px;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+        min-height: 720px;
+        padding: 60px 0 80px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.14);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.74rem;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--amarelo);
+        box-shadow: 0 0 0 5px rgba(245, 196, 81, 0.12);
+      }
+
+      h1 {
+        font-size: clamp(2.6rem, 4.5vw, 5rem);
+        line-height: 1.04;
+        margin: 20px 0 18px;
+        letter-spacing: -0.06em;
+      }
+
+      .lead {
+        font-size: 1.08rem;
+        color: rgba(255,255,255,0.8);
+        max-width: 640px;
+        margin-bottom: 28px;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+        margin-bottom: 26px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(100px, 1fr));
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .stat {
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 18px;
+        padding: 18px 16px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: clamp(1.4rem, 2vw, 2.2rem);
+        font-weight: 800;
+        margin-bottom: 4px;
+      }
+
+      .stat span {
+        color: rgba(255,255,255,0.75);
+        font-size: 0.82rem;
+      }
+
+      .hero-card {
+        position: relative;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 28px;
+        padding: 20px;
+        box-shadow: var(--sombra);
+      }
+
+      .hero-image {
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        height: 540px;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .floating-badge {
+        position: absolute;
+        left: 24px;
+        bottom: 24px;
+        background: rgba(15, 81, 50, 0.8);
+        border: 1px solid rgba(255,255,255,0.18);
+        color: var(--branco);
+        padding: 18px 20px;
+        border-radius: 20px;
+        max-width: 250px;
+        backdrop-filter: blur(12px);
+      }
+
+      .floating-badge strong {
+        display: block;
+        font-size: 1.4rem;
+      }
+
+      section {
+        padding: 96px 0;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 38px;
+        flex-wrap: wrap;
+      }
+
+      .section-kicker {
+        font-size: 0.82rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--verde);
+        font-weight: 800;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 1.1;
+        letter-spacing: -0.06em;
+        margin: 8px 0 0;
+      }
+
+      .section-header p {
+        max-width: 540px;
+        margin: 0;
+        color: var(--cinza);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .about-copy {
+        font-size: 1.05rem;
+        color: var(--cinza);
+      }
+
+      .about-copy p {
+        margin: 0 0 18px;
+      }
+
+      .about-panel {
+        background: linear-gradient(180deg, var(--verde-claro), #ebf9f1);
+        border: 1px solid rgba(29, 122, 76, 0.12);
+        border-radius: 30px;
+        padding: 26px;
+        box-shadow: var(--sombra);
+      }
+
+      .about-panel h3 {
+        margin-top: 0;
+        font-size: 1.4rem;
+      }
+
+      .feature-list {
+        list-style: none;
+        margin: 24px 0 0;
+        padding: 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      .feature-list li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: rgba(255,255,255,0.42);
+        border-radius: 14px;
+        padding: 11px 12px;
+        color: var(--cinza-escuro);
+        font-weight: 600;
+      }
+
+      .feature-list li::before {
+        content: "✓";
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--verde);
+        color: var(--branco);
+        display: grid;
+        place-items: center;
+        font-size: 0.92rem;
+        flex-shrink: 0;
+      }
+
+      .card-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .info-card {
+        background: var(--branco);
+        border-radius: 24px;
+        padding: 24px;
+        box-shadow: 0 14px 35px rgba(16, 35, 27, 0.08);
+        border: 1px solid rgba(19, 28, 24, 0.04);
+      }
+
+      .icon-wrap {
+        width: 58px;
+        height: 58px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--verde-claro), #d7f2f1);
+        display: grid;
+        place-items: center;
+        margin-bottom: 18px;
+        font-size: 1.7rem;
+      }
+
+      .info-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.25rem;
+      }
+
+      .info-card p {
+        margin: 0;
+        color: var(--cinza);
+      }
+
+      .highlight {
+        background: linear-gradient(180deg, rgba(18, 79, 56, 0.96), rgba(8, 48, 34, 1));
+        color: var(--branco);
+      }
+
+      .highlight .section-header p,
+      .highlight .section-header .section-kicker {
+        color: rgba(255,255,255,0.76);
+      }
+
+      .highlight-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .highlight-card {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 24px;
+        padding: 28px 22px;
+      }
+
+      .highlight-card h3 {
+        margin: 0 0 10px;
+        font-size: 1.28rem;
+      }
+
+      .highlight-card p {
+        margin: 0;
+        color: rgba(255,255,255,0.78);
+      }
+
+      .numbers-wrap {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 30px;
+        align-items: stretch;
+      }
+
+      .table-card {
+        background: var(--branco);
+        border-radius: 24px;
+        box-shadow: var(--sombra);
+        overflow: hidden;
+        border: 1px solid rgba(14, 25, 19, 0.04);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th, td {
+        padding: 18px 20px;
+        text-align: left;
+        border-bottom: 1px solid #edf2ee;
+      }
+
+      th {
+        background: #f5faf7;
+        color: var(--verde-escuro);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      td {
+        color: var(--cinza-escuro);
+      }
+
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+
+      .mini-panel {
+        background: linear-gradient(135deg, #f9f2d7, #f3ead8);
+        border-radius: 28px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .mini-panel h3 {
+        margin: 0 0 12px;
+        font-size: 1.7rem;
+      }
+
+      .mini-panel p {
+        margin: 0;
+        color: #4a4c41;
+      }
+
+      .location-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+      }
+
+      .location-map {
+        min-height: 360px;
+        background:
+          linear-gradient(180deg, rgba(17,76,56,0.2), rgba(17,76,56,0.2)),
+          url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+        border-radius: 28px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--sombra);
+      }
+
+      .location-map::after {
+        content: "Assentamento Estrela do Oeste";
+        position: absolute;
+        left: 24px;
+        bottom: 24px;
+        background: rgba(12, 36, 27, 0.75);
+        color: var(--branco);
+        padding: 10px 14px;
+        border-radius: 12px;
+        font-weight: 700;
+      }
+
+      .location-card {
+        background: var(--branco);
+        border-radius: 28px;
+        padding: 28px;
+        box-shadow: var(--sombra);
+      }
+
+      .info-stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .row-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #edf2ee;
+      }
+
+      .row-item:last-child {
+        border-bottom: none;
+      }
+
+      .row-item .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--verde);
+        margin-top: 7px;
+        flex-shrink: 0;
+      }
+
+      .row-item strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .contact-box {
+        background: linear-gradient(135deg, #edfff7, #daf3eb);
+        border: 1px solid rgba(29, 122, 76, 0.14);
+        border-radius: 28px;
+        padding: 28px;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .contact-box h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 2rem;
+      }
+
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0 0;
+        display: grid;
+        gap: 10px;
+        color: var(--cinza-escuro);
+      }
+
+      .contact-list li {
+        font-weight: 600;
+      }
+
+      footer {
+        background: #0d241c;
+        color: rgba(255,255,255,0.78);
+        padding: 26px 0;
+      }
+
+      .footer-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 980px) {
+        .hero-inner,
+        .about-grid,
+        .numbers-wrap,
+        .location-grid,
+        .contact-box {
+          grid-template-columns: 1fr;
+        }
+
+        .card-grid,
+        .highlight-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-image {
+          height: 420px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .nav {
+          display: none;
+        }
+
+        .topbar-wrap {
+          justify-content: center;
+        }
+
+        .stats,
+        .card-grid,
+        .highlight-grid {
+          grid-template-columns: 1fr;
+        }
+
+        section {
+          padding: 72px 0;
+        }
+
+        .hero-inner {
+          min-height: auto;
+          padding-top: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-wrap">
+        <div class="brand">
+          <div class="brand-mark">★</div>
+          <span>Estrela do Oeste</span>
+        </div>
+
+        <nav class="nav" aria-label="Menu principal">
+          <a href="#inicio">Início</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#estrutura">Estrutura</a>
+          <a href="#dados">Dados</a>
+          <a href="#localizacao">Localização</a>
+          <a href="#contato">Contato</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="container hero-inner">
+          <div>
+            <div class="eyebrow">Escola pública estadual</div>
+            <h1>Colégio Estadual do Campo Estrela do Oeste</h1>
+            <p class="lead">
+              Uma escola de referência na zona rural de Santa Maria do Oeste, Paraná,
+              que une Ensino Fundamental, Ensino Médio, inclusão, cultura, tecnologia e
+              forte vínculo com a comunidade do Assentamento Estrela do Oeste.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#sobre">Conheça a escola</a>
+              <a class="btn btn-ghost" href="#contato">Fale conosco</a>
+            </div>
+
+            <div class="stats" aria-label="Estatísticas da escola">
+              <div class="stat">
+                <strong>153</strong>
+                <span>Matrículas</span>
+              </div>
+              <div class="stat">
+                <strong>18</strong>
+                <span>Turmas</span>
+              </div>
+              <div class="stat">
+                <strong>44</strong>
+                <span>Fundamental</span>
+              </div>
+              <div class="stat">
+                <strong>40</strong>
+                <span>Médio</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-image">
+              <img
+                src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80"
+                alt="Alunos e ambiente escolar"
+              />
+            </div>
+            <div class="floating-badge">
+              <strong>2026</strong>
+              Escola ativa e reconhecida com Ensino Fundamental anos finais e Ensino Médio.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Sobre a escola</div>
+              <h2>Educação de qualidade no campo</h2>
+            </div>
+            <p>
+              O colégio integra a vida da comunidade rural de Santa Maria do Oeste e oferece
+              uma educação pública estadual com forte compromisso com o acesso, a inclusão e o aprendizado.
+            </p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-copy">
+              <p>
+                O nome oficial cadastrado é <strong>Estrela do Oeste, C E C-Ef M</strong>,
+                e a instituição também é conhecida como <strong>Colégio Estadual do Campo Estrela do Oeste</strong>.
+                Ela está localizada no Assentamento Estrela do Oeste, zona rural de Santa Maria do Oeste, Paraná,
+                e atua como referência educacional para a comunidade local.
+              </p>
+              <p>
+                A escola atende o <strong>Ensino Fundamental – anos finais</strong> e o <strong>Ensino Médio</strong>,
+                com estrutura voltada para uma formação completa, incluindo atendimento educacional especializado,
+                acesso à tecnologia, alimentação escolar e ações culturais.
+              </p>
+            </div>
+
+            <div class="about-panel">
+              <h3>Valores da instituição</h3>
+              <ul class="feature-list">
+                <li>Acesso à educação na zona rural</li>
+                <li>Inclusão e acolhimento</li>
+                <li>Formação cidadã e comunitária</li>
+                <li>Ambiente de aprendizagem com tecnologia</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Destaques</div>
+              <h2>O que torna a escola especial</h2>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <article class="info-card">
+              <div class="icon-wrap">🏫</div>
+              <h3>Ensino Fundamental e Médio</h3>
+              <p>Oferece continuidade de estudo para alunos da comunidade rural, sem necessidade de sair da região.</p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-wrap">♿</div>
+              <h3>AEE</h3>
+              <p>Atendimento Educacional Especializado com estrutura acessível e atenção especializada.</p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-wrap">💻</div>
+              <h3>Tecnologia</h3>
+              <p>Laboratório de informática, computadores para alunos e internet para aprendizagem e comunidade.</p>
+            </article>
+
+            <article class="info-card">
+              <div class="icon-wrap">🎨</div>
+              <h3>Cultura e arte</h3>
+              <p>Recursos para atividades artísticas, culturais, musicais e jogos educativos.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="highlight">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Nossa proposta</div>
+              <h2>Uma escola integrada à comunidade</h2>
+            </div>
+            <p>
+              O Colégio Estadual do Campo Estrela do Oeste é mais do que um espaço de ensino: é parte da vida comunitária,
+              do desenvolvimento local e da formação de cidadãos conscientes do território em que vivem.
+            </p>
+          </div>
+
+          <div class="highlight-grid">
+            <article class="highlight-card">
+              <h3>Educação no campo</h3>
+              <p>Reconhecida oficialmente como escola estadual de campo, com forte ligação ao ambiente rural e à realidade local.</p>
+            </article>
+
+            <article class="highlight-card">
+              <h3>APMF</h3>
+              <p>A Associação de Pais, Mestres e Funcionários fortalece a participação da família e da comunidade escolar.</p>
+            </article>
+
+            <article class="highlight-card">
+              <h3>Alimentação escolar</h3>
+              <p>A escola oferece estrutura de cozinha e alimentação escolar, contribuindo para o bem-estar do aluno.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="estrutura">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Estrutura</div>
+              <h2>Infraestrutura que favorece a aprendizagem</h2>
+            </div>
+          </div>
+
+          <div class="numbers-wrap">
+            <div class="table-card">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Modalidade</th>
+                    <th>Turmas</th>
+                    <th>Matrículas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ensino Fundamental</td>
+                    <td>4</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td>Ensino Médio</td>
+                    <td>4</td>
+                    <td>40</td>
+                  </tr>
+                  <tr>
+                    <td>Atividades Complementares</td>
+                    <td>6</td>
+                    <td>53</td>
+                  </tr>
+                  <tr>
+                    <td>Atendimento Educacional Especializado</td>
+                    <td>4</td>
+                    <td>16</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Total</strong></td>
+                    <td><strong>18</strong></td>
+                    <td><strong>153</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mini-panel">
+              <h3>Estruturas disponíveis</h3>
+              <p>
+                Salas de aula, pátio descoberto, cozinha, laboratório de informática, sala de recursos multifuncionais,
+                área verde, banheiros acessíveis e acesso à internet para estudantes e comunidade.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dados">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Dados oficiais</div>
+              <h2>Identidade e organização escolar</h2>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-copy">
+              <p><strong>Nome cadastral:</strong> Estrela do Oeste, C E C-Ef M</p>
+              <p><strong>Rede:</strong> Estadual</p>
+              <p><strong>Município:</strong> Santa Maria do Oeste – PR</p>
+              <p><strong>Localização:</strong> Assentamento Estrela do Oeste</p>
+              <p><strong>NRE:</strong> Pitanga</p>
+              <p><strong>Código INEP:</strong> 41148649</p>
+              <p><strong>Diretor em 2026:</strong> Everaldo Pereira</p>
+            </div>
+
+            <div class="about-panel">
+              <h3>Informações relevantes</h3>
+              <ul class="feature-list">
+                <li>Etapas: Fundamental – anos finais e Ensino Médio</li>
+                <li>Turno: Diurno</li>
+                <li>APMF: registrada</li>
+                <li>Atendimento especializado: disponível</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="localizacao">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Localização</div>
+              <h2>Conectada à realidade da comunidade</h2>
+            </div>
+          </div>
+
+          <div class="location-grid">
+            <div class="location-map" aria-label="Mapa da localização da escola"></div>
+
+            <div class="location-card">
+              <div class="info-stack">
+                <div class="row-item">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>Endereço</strong>
+                    Assentamento Estrela do Oeste, Zona Rural, Santa Maria do Oeste – PR
+                  </div>
+                </div>
+
+                <div class="row-item">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>CEP</strong>
+                    85230-000
+                  </div>
+                </div>
+
+                <div class="row-item">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>Zona</strong>
+                    Rural / comunidade de assentamento
+                  </div>
+                </div>
+
+                <div class="row-item">
+                  <span class="dot"></span>
+                  <div>
+                    <strong>Administração</strong>
+                    Secretaria de Estado da Educação do Paraná - SEED/PR
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contato">
+        <div class="container">
+          <div class="contact-box">
+            <div>
+              <div class="section-kicker">Contato</div>
+              <h3>Uma escola presente na vida da comunidade</h3>
+              <p>
+                O Colégio Estadual do Campo Estrela do Oeste vive em sintonia com a comunidade do assentamento,
+                valorizando educação, cultura, cidadania e acesso ao conhecimento em todas as etapas escolares.
+              </p>
+              <ul class="contact-list">
+                <li>📍 Santa Maria do Oeste – PR</li>
+                <li>🕒 Funcionamento: dias úteis, em período diurno</li>
+                <li>📞 Telefone: número informado em fontes alternativas, não oficialmente confirmado pela SEED</li>
+              </ul>
+            </div>
+
+            <div class="about-panel">
+              <h3>Resumo rápido</h3>
+              <ul class="feature-list">
+                <li>Escola pública estadual</li>
+                <li>Ensino Fundamental e Médio</li>
+                <li>Zona rural do Assentamento Estrela do Oeste</li>
+                <li>APMF e AEE ativos</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-wrap">
+        <div>
+          <strong>Colégio Estadual do Campo Estrela do Oeste</strong>
+        </div>
+        <div>© <span id="year"></span> • Educação pública, comunitária e de excelência</div>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
