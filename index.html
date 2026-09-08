@@ -1,64 +1,92 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conteúdo indiponível devido ao Período Eleitoral</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site indisponível</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f6f9;
-            color: #333333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .card {
-            background: #ffffff;
-            padding: 40px 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            border-top: 5px solid #2b5c8f;
-        }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
 
-        .icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
+    .container {
+      max-width: 600px;
+    }
 
-        h1 {
-            font-size: 1.4rem;
-            color: #1a2530;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
+    .icon {
+      font-size: 80px;
+      margin-bottom: 25px;
+      animation: flutuar 3s ease-in-out infinite;
+    }
 
-        p {
-            font-size: 0.95rem;
-            color: #666666;
-            line-height: 1.6;
-        }
-    </style>
+    h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #cbd5e1;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      font-size: 14px;
+      color: #e2e8f0;
+    }
+
+    @keyframes flutuar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="card">
-        <div class="icon">🗳️</div>
-        <h1>Conteúdo Indisponível devido ao período eleitoral</h1>
-        <p>Em cumprimento à Lei Federal nº 9.504/1997, este site permanecerá indisponível temporariamente durante o período eleitoral brasileiro.</p>
+  <div class="container">
+
+    <div class="icon">🗳️</div>
+
+    <h1>Site indisponível</h1>
+
+    <p>
+      Em razão do período eleitoral, este site encontra-se
+      temporariamente indisponível, em cumprimento a Lei Federal Nº 9504/1997.
+    </p>
+
+    <div class="status">
+      🗳️ Indisponível durante o período eleitoral
     </div>
+
+  </div>
 
 </body>
 </html>
+```
