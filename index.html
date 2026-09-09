@@ -622,6 +622,331 @@
         font-weight: 600;
       }
 
+      /* ===== SEÇÕES NOVAS ===== */
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .news-card {
+        background: var(--branco);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 14px 35px rgba(16, 35, 27, 0.08);
+        border: 1px solid rgba(19, 28, 24, 0.04);
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .news-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 45px rgba(16, 35, 27, 0.12);
+      }
+
+      .news-date {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--verde);
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+
+      .news-card h3 {
+        margin: 0 0 12px;
+        font-size: 1.2rem;
+        color: var(--cinza-escuro);
+      }
+
+      .news-card p {
+        margin: 0;
+        color: var(--cinza);
+        flex-grow: 1;
+      }
+
+      .news-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--verde-claro), #d7f2f1);
+        color: var(--verde);
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-top: 12px;
+        width: fit-content;
+      }
+
+      /* Calendário */
+      .calendar-wrapper {
+        background: var(--branco);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: var(--sombra);
+        border: 1px solid rgba(19, 28, 24, 0.04);
+      }
+
+      .calendar-month {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 12px;
+        margin-bottom: 40px;
+      }
+
+      .calendar-header {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .calendar-header div {
+        text-align: center;
+        font-weight: 700;
+        color: var(--verde);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+      }
+
+      .calendar-day {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: #f5faf7;
+        font-weight: 600;
+        color: var(--cinza-escuro);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .calendar-day:hover {
+        background: var(--verde-claro);
+        color: var(--verde);
+      }
+
+      .calendar-day.event {
+        background: linear-gradient(135deg, var(--amarelo), #f0b941);
+        color: var(--verde-escuro);
+        font-weight: 700;
+      }
+
+      .calendar-day.today {
+        background: var(--verde);
+        color: var(--branco);
+        box-shadow: 0 8px 20px rgba(29, 122, 76, 0.3);
+      }
+
+      .events-list {
+        margin-top: 30px;
+        padding-top: 30px;
+        border-top: 2px solid #edf2ee;
+      }
+
+      .event-item {
+        display: grid;
+        grid-template-columns: 80px 1fr;
+        gap: 20px;
+        padding: 16px;
+        margin-bottom: 12px;
+        background: #f5faf7;
+        border-radius: 14px;
+        border-left: 4px solid var(--amarelo);
+      }
+
+      .event-date {
+        font-weight: 800;
+        font-size: 1.1rem;
+        color: var(--verde);
+        text-align: center;
+      }
+
+      .event-info h4 {
+        margin: 0 0 4px;
+        color: var(--cinza-escuro);
+      }
+
+      .event-info p {
+        margin: 0;
+        color: var(--cinza);
+        font-size: 0.9rem;
+      }
+
+      /* Galeria */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        aspect-ratio: 1;
+        box-shadow: 0 14px 35px rgba(16, 35, 27, 0.08);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 16px;
+        color: var(--branco);
+        transition: background 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        background: rgba(0, 0, 0, 0.6);
+      }
+
+      .gallery-overlay h4 {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .gallery-overlay p {
+        margin: 4px 0 0;
+        font-size: 0.85rem;
+        opacity: 0.9;
+      }
+
+      .gallery-filters {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 2px solid var(--verde);
+        background: var(--branco);
+        color: var(--verde);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--verde);
+        color: var(--branco);
+      }
+
+      /* Formulário de Contato */
+      .form-wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 24px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: var(--cinza-escuro);
+        font-size: 0.95rem;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid #edf2ee;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 0.95rem;
+        transition: border-color 0.2s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--verde);
+        box-shadow: 0 0 0 3px rgba(29, 122, 76, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 140px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-submit {
+        width: 100%;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, var(--verde), #0f5132);
+        color: var(--branco);
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .form-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(29, 122, 76, 0.3);
+      }
+
+      .form-message {
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        display: none;
+      }
+
+      .form-message.success {
+        background: linear-gradient(135deg, #d7f2f1, #b8f0ec);
+        color: var(--verde);
+        border-left: 4px solid var(--verde);
+      }
+
+      .form-message.error {
+        background: #ffe8e8;
+        color: #c33;
+        border-left: 4px solid #c33;
+      }
+
       footer {
         background: #0d241c;
         color: rgba(255,255,255,0.78);
@@ -646,7 +971,12 @@
         }
 
         .card-grid,
-        .highlight-grid {
+        .highlight-grid,
+        .news-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .gallery-grid {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
@@ -666,7 +996,16 @@
 
         .stats,
         .card-grid,
-        .highlight-grid {
+        .highlight-grid,
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .form-row {
           grid-template-columns: 1fr;
         }
 
@@ -693,11 +1032,12 @@
 
         <nav class="nav" aria-label="Menu principal">
           <a href="#inicio">Início</a>
+          <a href="#noticias">Notícias</a>
+          <a href="#calendario">Calendário</a>
+          <a href="#galeria">Galeria</a>
           <a href="#sobre">Sobre</a>
-          <a href="#estrutura">Estrutura</a>
-          <a href="#dados">Dados</a>
-          <a href="#localizacao">Localização</a>
           <a href="#contato">Contato</a>
+          <a href="admin.html" style="color: var(--amarelo); margin-left: auto;">⚙️ Admin</a>
         </nav>
       </div>
     </header>
@@ -721,20 +1061,24 @@
 
             <div class="stats" aria-label="Estatísticas da escola">
               <div class="stat">
-                <strong>113 (89)</strong>
+                <strong>89</strong>
                 <span>Matrículas</span>
               </div>
               <div class="stat">
-                <strong>13 (7)</strong>
+                <strong>7</strong>
                 <span>Turmas</span>
               </div>
               <div class="stat">
                 <strong>49</strong>
-                <span>Fundamental</span>
+                <span>Alunos Ens. Fund.</span>
               </div>
               <div class="stat">
                 <strong>40</strong>
-                <span>Médio</span>
+                <span>Alunos Ens. Médio</span>
+              </div>
+              <div class="stat">
+                <strong>3º Lugar</strong>
+                <span>IDEB 2023</span>
               </div>
             </div>
           </div>
@@ -751,6 +1095,57 @@
               Escola ativa e reconhecida com Ensino Fundamental anos finais e Ensino Médio.
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="noticias">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Comunicados</div>
+              <h2>Últimas notícias e avisos</h2>
+            </div>
+            <p>
+              Fique sempre atualizado com os principais comunicados, eventos e mudanças na rotina escolar.
+            </p>
+          </div>
+
+          <div id="newsContainer" class="news-grid"></div>
+        </div>
+      </section>
+
+      <section id="calendario">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Datas Importantes</div>
+              <h2>Calendário escolar 2026</h2>
+            </div>
+            <p>
+              Confira as datas de provas, reuniões, feriados e eventos importantes do ano letivo.
+            </p>
+          </div>
+
+          <div class="calendar-wrapper">
+            <div id="eventsListContainer" class="events-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <div class="section-kicker">Momentos Especiais</div>
+              <h2>Galeria de fotos</h2>
+            </div>
+            <p>
+              Acompanhe os eventos, projetos, apresentações e momentos especiais da comunidade escolar.
+            </p>
+          </div>
+
+          <div class="gallery-filters" id="galleryFiltersContainer"></div>
+          <div id="galleryContainer" class="gallery-grid"></div>
         </div>
       </section>
 
@@ -776,7 +1171,7 @@
                 e atua como referência educacional para a comunidade local.
               </p>
               <p>
-                A escola atende o <strong>Ensino Fundamental – anos finais</strong> e o <strong>Ensino Médio</strong>,
+                A escola atende o <strong>Ensino Fundamental – anos finais</strong> e o <strong>Ensino Médio</strong>, além de cursos como o <strong>Centro de Línguas Estrangeiras Modernas (CELEM)</strong> e as <strong> Salas de Recurso Multifuncionais (SRM)</strong> para os alunos que possuem alguma dificuldade na aprendizagem.
                 com estrutura voltada para uma formação completa, incluindo atendimento educacional especializado,
                 acesso à tecnologia, alimentação escolar e ações culturais.
               </p>
@@ -812,6 +1207,12 @@
             </article>
 
             <article class="info-card">
+              <div class="icon-wrap">📚</div>
+              <h3>CELEM</h3>
+              <p>Centro de Línguas Estrangeiras Modernas com cursos de espanhol para os alunos.</p>
+            </article>
+
+            <article class="info-card">
               <div class="icon-wrap">♿</div>
               <h3>AEE</h3>
               <p>Atendimento Educacional Especializado com estrutura acessível e atenção especializada.</p>
@@ -828,6 +1229,7 @@
               <h3>Cultura e arte</h3>
               <p>Recursos para atividades artísticas, culturais, musicais e jogos educativos.</p>
             </article>
+          </article>
           </div>
         </div>
       </section>
@@ -895,12 +1297,12 @@
                     <td>40</td>
                   </tr>
                   <tr>
-                    <td>Atividades Complementares</td>
+                    <td>CELEM</td>
                     <td>2</td>
                     <td>43</td>
                   </tr>
                   <tr>
-                    <td>Atendimento Educacional Especializado</td>
+                    <td>Sala de Recurso Multifuncional</td>
                     <td>4</td>
                     <td>17</td>
                   </tr>
@@ -1010,20 +1412,104 @@
 
       <section id="contato">
         <div class="container">
-          <div class="contact-box">
+          <div class="section-header">
             <div>
-              <div class="section-kicker">Contato</div>
+              <div class="section-kicker">Comunicação</div>
+              <h2>Entre em contato conosco</h2>
+            </div>
+            <p>
+              Envie sua dúvida, sugestão ou entre em contato através dos canais disponíveis. 
+              Sua opinião é importante para melhorar nosso trabalho!
+            </p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; align-items: start;">
+            <!-- Informações de Contato -->
+            <div>
+              <h3 style="margin-top: 0; margin-bottom: 24px; color: var(--cinza-escuro);">Informações</h3>
+              <div class="contact-box" style="grid-template-columns: 1fr;">
+                <div>
+                  <ul class="contact-list" style="margin: 0; padding: 0;">
+                    <li>📍 Assentamento Estrela do Oeste</li>
+                    <li>📍 Santa Maria do Oeste – PR</li>
+                    <li style="margin-top: 16px;">📞 (42) 9982-0116</li>
+                    <li>📧 sffestreladooeste@escola.pr.gov.br</li>
+                    <li style="margin-top: 16px;">🕒 Funcionamento</li>
+                    <li style="font-weight: 400; color: var(--cinza);">Segunda a Sexta</li>
+                    <li style="font-weight: 400; color: var(--cinza);">7:20 às 17:10</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Formulário de Contato/Sugestões -->
+            <div class="form-wrapper">
+              <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                <div id="formMessage" class="form-message"></div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(42) 99999-9999">
+                  </div>
+                  <div class="form-group">
+                    <label for="relacao">Sua relação com a escola *</label>
+                    <select id="relacao" name="relacao" required>
+                      <option value="">Selecione...</option>
+                      <option value="aluno">Aluno(a)</option>
+                      <option value="responsavel">Responsável</option>
+                      <option value="professor">Professor(a)</option>
+                      <option value="funcionario">Funcionário</option>
+                      <option value="comunidade">Comunidade</option>
+                      <option value="outro">Outro</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group full">
+                  <label for="assunto">Assunto *</label>
+                  <select id="assunto" name="assunto" required>
+                    <option value="">Selecione...</option>
+                    <option value="duvida">Dúvida sobre a escola</option>
+                    <option value="sugestao">Sugestão de melhoria</option>
+                    <option value="reclamacao">Reclamação</option>
+                    <option value="elogio">Elogio</option>
+                    <option value="evento">Informações sobre eventos</option>
+                    <option value="outro">Outro assunto</option>
+                  </select>
+                </div>
+
+                <div class="form-group full">
+                  <label for="mensagem">Mensagem *</label>
+                  <textarea id="mensagem" name="mensagem" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+
+                <button type="submit" class="form-submit">Enviar Mensagem</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Card com informações finais -->
+          <div class="contact-box" style="grid-template-columns: 1fr;">
+            <div>
+              <div class="section-kicker">Compromisso</div>
               <h3>Uma escola presente na vida da comunidade</h3>
               <p>
                 O Colégio Estadual do Campo Estrela do Oeste vive em sintonia com a comunidade do assentamento,
                 valorizando educação, cultura, cidadania e acesso ao conhecimento em todas as etapas escolares.
+                Estamos sempre abertos para ouvir sugestões e melhorar continuamente nossos serviços.
               </p>
-              <ul class="contact-list">
-                <li>📍 Santa Maria do Oeste – PR</li>
-                <li>🕒 Funcionamento: Segunda-feira a Sexta-feira, das 7:20 às 17:10</li>
-                <li>📞 Telefone: (42) 9982-0116</li>
-                <li>📧 Email: sffestreladooeste@escola.pr.gov.br </li>
-              </ul>
             </div>
 
             <div class="about-panel">
@@ -1031,7 +1517,7 @@
               <ul class="feature-list">
                 <li>Escola pública estadual</li>
                 <li>Ensino Fundamental e Médio</li>
-                <li>Escola do campo</li>
+                <li>CELEM e Salas de Recurso</li>
                 <li>APMF e AEE ativos</li>
               </ul>
             </div>
@@ -1051,6 +1537,180 @@
 
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ===== CARREGAR DADOS DO ADMIN =====
+      function loadAdminData() {
+        loadNews();
+        loadEvents();
+        loadGallery();
+      }
+
+      // ===== NOTÍCIAS =====
+      function loadNews() {
+        const newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+        const container = document.getElementById("newsContainer");
+
+        if (newsList.length === 0) {
+          container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--cinza);"><p>Nenhuma notícia publicada ainda.</p></div>';
+          return;
+        }
+
+        container.innerHTML = newsList.map(news => `
+          <article class="news-card">
+            <div class="news-date">${news.date}</div>
+            <h3>${news.title}</h3>
+            <p>${news.content}</p>
+            <span class="news-badge">${news.badge}</span>
+          </article>
+        `).join("");
+      }
+
+      // ===== EVENTOS/CALENDÁRIO =====
+      function loadEvents() {
+        const eventsList = JSON.parse(localStorage.getItem("eventsList")) || [];
+        const container = document.getElementById("eventsListContainer");
+
+        if (eventsList.length === 0) {
+          container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--cinza);"><p>Nenhum evento programado ainda.</p></div>';
+          return;
+        }
+
+        container.innerHTML = `
+          <h3 style="margin-top: 0; color: var(--cinza-escuro);">Próximos eventos</h3>
+          ${eventsList.map(evt => `
+            <div class="event-item">
+              <div class="event-date">${evt.dayDisplay}</div>
+              <div class="event-info">
+                <h4>${evt.title}</h4>
+                <p>${evt.description}</p>
+              </div>
+            </div>
+          `).join("")}
+        `;
+      }
+
+      // ===== GALERIA =====
+      function loadGallery() {
+        const galleryList = JSON.parse(localStorage.getItem("galleryList")) || [];
+        const filtersContainer = document.getElementById("galleryFiltersContainer");
+        const container = document.getElementById("galleryContainer");
+
+        if (galleryList.length === 0) {
+          filtersContainer.innerHTML = '';
+          container.innerHTML = '<div style="text-align: center; padding: 40px; color: var(--cinza); grid-column: 1 / -1;"><p>Nenhuma foto na galeria ainda.</p></div>';
+          return;
+        }
+
+        // Extrair categorias únicas
+        const allCategories = new Set(["all"]);
+        galleryList.forEach(photo => {
+          photo.categories.forEach(cat => allCategories.add(cat));
+        });
+
+        // Renderizar filtros
+        filtersContainer.innerHTML = Array.from(allCategories).map(cat => `
+          <button class="filter-btn ${cat === "all" ? "active" : ""}" data-filter="${cat}">
+            ${cat === "all" ? "Todos" : cat}
+          </button>
+        `).join("");
+
+        // Renderizar galeria
+        container.innerHTML = galleryList.map(photo => `
+          <div class="gallery-item" data-category="${photo.categories.join(",")}">
+            <img src="${photo.url}" alt="${photo.title}" onerror="this.src='https://via.placeholder.com/300?text=Erro'">
+            <div class="gallery-overlay">
+              <h4>${photo.title}</h4>
+              <p>${photo.categories.join(" • ")}</p>
+            </div>
+          </div>
+        `).join("");
+
+        // Reconfigurar filtros
+        setupGalleryFilters();
+      }
+
+      function setupGalleryFilters() {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+
+        filterBtns.forEach(btn => {
+          btn.addEventListener("click", function() {
+            const filter = this.getAttribute("data-filter");
+            
+            filterBtns.forEach(b => b.classList.remove("active"));
+            this.classList.add("active");
+            
+            galleryItems.forEach(item => {
+              if (filter === "all") {
+                item.style.display = "block";
+              } else {
+                const categories = item.getAttribute("data-category").split(",");
+                if (categories.includes(filter)) {
+                  item.style.display = "block";
+                } else {
+                  item.style.display = "none";
+                }
+              }
+            });
+          });
+        });
+      }
+
+      // ===== FORMULÁRIO DE CONTATO =====
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        const form = event.target;
+        const messageDiv = document.getElementById("formMessage");
+        
+        const nome = document.getElementById("nome").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const telefone = document.getElementById("telefone").value.trim();
+        const relacao = document.getElementById("relacao").value;
+        const assunto = document.getElementById("assunto").value;
+        const mensagem = document.getElementById("mensagem").value.trim();
+        
+        if (!nome || !email || !mensagem || !relacao || !assunto) {
+          messageDiv.textContent = "Por favor, preencha todos os campos obrigatórios.";
+          messageDiv.classList.add("error");
+          messageDiv.classList.remove("success");
+          messageDiv.style.display = "block";
+          return;
+        }
+
+        // Salvar mensagem no localStorage
+        const contact = {
+          id: Date.now(),
+          nome,
+          email,
+          telefone,
+          relacao,
+          assunto,
+          mensagem,
+          lida: false,
+          data: new Date().toLocaleString("pt-BR"),
+          dataISO: new Date().toISOString()
+        };
+
+        let messages = JSON.parse(localStorage.getItem("contactMessages")) || [];
+        messages.unshift(contact);
+        localStorage.setItem("contactMessages", JSON.stringify(messages));
+        
+        setTimeout(() => {
+          messageDiv.textContent = "✓ Obrigado! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.";
+          messageDiv.classList.add("success");
+          messageDiv.classList.remove("error");
+          messageDiv.style.display = "block";
+          form.reset();
+          
+          setTimeout(() => {
+            messageDiv.style.display = "none";
+          }, 5000);
+        }, 800);
+      }
+
+      // Carregar dados ao inicializar
+      document.addEventListener("DOMContentLoaded", loadAdminData);
     </script>
   </body>
 </html>
