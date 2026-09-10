@@ -1,1 +1,1390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel Administrativo - Colégio Estadual Estrela do Oeste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --branco: #ffffff;
+        --verde: #1d7a4c;
+        --verde-claro: #dff5e8;
+        --verde-agua: #7bdcb5;
+        --amarelo: #f5c451;
+        --terra: #f6efe2;
+        --cinza-escuro: #1b1f23;
+        --cinza: #5f6772;
+        --cinza-claro: #edf1f3;
+        --sombra: 0 18px 45px rgba(9, 40, 28, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(180deg, #f5faf7 0%, #f4f8f5 100%);
+        color: var(--cinza-escuro);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      /* ===== LOGIN ===== */
+      .login-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, #0b3628 0%, #124f38 32%, #0d7a59 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .login-container {
+        background: var(--branco);
+        border-radius: 24px;
+        padding: 48px;
+        box-shadow: var(--sombra);
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .login-container h1 {
+        margin: 0 0 12px;
+        font-size: 1.8rem;
+        color: var(--verde);
+      }
+
+      .login-container p {
+        color: var(--cinza);
+        margin: 0 0 32px;
+      }
+
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .login-form input {
+        padding: 14px 16px;
+        border: 2px solid #edf2ee;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-family: inherit;
+        transition: border-color 0.2s ease;
+      }
+
+      .login-form input:focus {
+        outline: none;
+        border-color: var(--verde);
+        box-shadow: 0 0 0 3px rgba(29, 122, 76, 0.1);
+      }
+
+      .login-form input::placeholder {
+        color: var(--cinza-claro);
+      }
+
+      .login-btn {
+        padding: 14px 24px;
+        background: linear-gradient(135deg, var(--verde), #0f5132);
+        color: var(--branco);
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .login-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(29, 122, 76, 0.3);
+      }
+
+      .login-error {
+        display: none;
+        background: #ffe8e8;
+        color: #c33;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        border-left: 4px solid #c33;
+      }
+
+      /* ===== PAINEL ADMIN ===== */
+      .admin-panel {
+        display: none;
+        min-height: 100vh;
+        padding: 24px 0;
+      }
+
+      .admin-header {
+        background: rgba(11, 48, 32, 0.96);
+        color: var(--branco);
+        padding: 20px 0;
+        margin-bottom: 32px;
+        position: sticky;
+        top: 0;
+        z-index: 50;
+      }
+
+      .admin-header-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .admin-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+
+      .logout-btn {
+        padding: 10px 20px;
+        background: rgba(255,255,255,0.15);
+        color: var(--branco);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+
+      .logout-btn:hover {
+        background: rgba(255,255,255,0.25);
+      }
+
+      .admin-nav {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 32px;
+        border-bottom: 2px solid #edf2ee;
+      }
+
+      .admin-nav-btn {
+        padding: 12px 20px;
+        background: none;
+        border: none;
+        color: var(--cinza);
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+      }
+
+      .admin-nav-btn:hover,
+      .admin-nav-btn.active {
+        color: var(--verde);
+        border-bottom-color: var(--verde);
+      }
+
+      .section {
+        display: none;
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 24px;
+        color: var(--cinza-escuro);
+      }
+
+      /* ===== FORMULÁRIOS ===== */
+      .form-card {
+        background: var(--branco);
+        border-radius: 20px;
+        padding: 32px;
+        box-shadow: 0 14px 35px rgba(16, 35, 27, 0.08);
+        border: 1px solid rgba(19, 28, 24, 0.04);
+        margin-bottom: 32px;
+      }
+
+      .form-card h3 {
+        margin: 0 0 20px;
+        font-size: 1.3rem;
+        color: var(--verde);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 700;
+        color: var(--cinza-escuro);
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid #edf2ee;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        transition: border-color 0.2s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: var(--verde);
+        box-shadow: 0 0 0 3px rgba(29, 122, 76, 0.1);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, var(--verde), #0f5132);
+        color: var(--branco);
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(29, 122, 76, 0.3);
+      }
+
+      .success-message {
+        display: none;
+        background: linear-gradient(135deg, #d7f2f1, #b8f0ec);
+        color: var(--verde);
+        padding: 14px;
+        border-radius: 12px;
+        margin-bottom: 16px;
+        border-left: 4px solid var(--verde);
+      }
+
+      /* ===== LISTA DE ITENS ===== */
+      .items-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .item-card {
+        background: var(--branco);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(16, 35, 27, 0.05);
+        border: 1px solid rgba(19, 28, 24, 0.04);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: start;
+      }
+
+      .item-content h4 {
+        margin: 0 0 8px;
+        font-size: 1.1rem;
+        color: var(--cinza-escuro);
+      }
+
+      .item-content p {
+        margin: 0;
+        color: var(--cinza);
+        font-size: 0.9rem;
+      }
+
+      .item-meta {
+        font-size: 0.8rem;
+        color: var(--cinza);
+        margin-top: 8px;
+      }
+
+      .item-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .delete-btn {
+        padding: 8px 12px;
+        background: #ffe8e8;
+        color: #c33;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .delete-btn:hover {
+        background: #ffd4d4;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--cinza);
+      }
+
+      .empty-state p {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      /* ===== GALERIA ===== */
+      .gallery-preview {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .gallery-thumb {
+        position: relative;
+        aspect-ratio: 1;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .gallery-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-thumb .delete-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        padding: 6px 10px;
+        font-size: 0.75rem;
+      }
+
+      .url-input-helper {
+        font-size: 0.85rem;
+        color: var(--cinza);
+        margin-top: 6px;
+      }
+
+      /* ===== MODAL DE EDIÇÃO ===== */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background: var(--branco);
+        border-radius: 20px;
+        padding: 32px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: var(--sombra);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .modal-header h3 {
+        margin: 0;
+        color: var(--verde);
+      }
+
+      .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--cinza);
+        padding: 0;
+      }
+
+      .edit-btn {
+        padding: 8px 12px;
+        background: linear-gradient(135deg, var(--verde-claro), #c5f1e3);
+        color: var(--verde);
+        border: none;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .edit-btn:hover {
+        background: linear-gradient(135deg, var(--verde-agua), #a8e9d8);
+      }
+
+      /* ===== MENSAGENS =====*/
+      .message-card {
+        background: var(--branco);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(16, 35, 27, 0.05);
+        border: 1px solid rgba(19, 28, 24, 0.04);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: start;
+        transition: all 0.2s ease;
+      }
+
+      .message-card.unread {
+        background: linear-gradient(135deg, var(--verde-claro), #ebf9f1);
+        border-left: 4px solid var(--verde);
+      }
+
+      .message-card:hover {
+        box-shadow: 0 12px 30px rgba(16, 35, 27, 0.1);
+      }
+
+      .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 12px;
+      }
+
+      .message-header h4 {
+        margin: 0;
+        font-size: 1.05rem;
+        color: var(--cinza-escuro);
+      }
+
+      .message-badge-unread {
+        display: inline-block;
+        background: var(--verde);
+        color: var(--branco);
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .message-meta {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+      }
+
+      .message-meta-item {
+        color: var(--cinza);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .message-meta-item strong {
+        color: var(--cinza-escuro);
+        font-weight: 600;
+      }
+
+      .message-content {
+        background: var(--branco);
+        padding: 14px;
+        border-radius: 10px;
+        margin: 12px 0;
+        border-left: 3px solid var(--amarelo);
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: var(--cinza-escuro);
+      }
+
+      .message-actions-right {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .mark-read-btn {
+        padding: 8px 12px;
+        background: linear-gradient(135deg, var(--amarelo), #f0b941);
+        color: var(--verde-escuro);
+        border: none;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .mark-read-btn:hover {
+        background: linear-gradient(135deg, #f5c451, #e8ad2d);
+      }
+
+      .mark-read-btn.read {
+        background: #edf1f3;
+        color: var(--cinza);
+        cursor: default;
+      }
+
+      @media (max-width: 768px) {
+        .message-card {
+          grid-template-columns: 1fr;
+        }
+
+        .message-actions-right {
+          flex-direction: row;
+        }
+
+        .login-container {
+          padding: 32px 24px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .item-card {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-preview {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .admin-nav {
+          overflow-x: auto;
+        }
+      }
+    </style>
+</head>
+<body>
+    <!-- ===== LOGIN ===== -->
+    <div id="loginWrapper" class="login-wrapper">
+        <div class="login-container">
+            <h1>🔐 Painel Admin</h1>
+            <p>Colégio Estadual Estrela do Oeste</p>
+            
+            <div id="loginError" class="login-error"></div>
+            
+            <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+                <input 
+                    type="password" 
+                    id="accessCode" 
+                    placeholder="Digite o código de acesso" 
+                    autocomplete="off"
+                    required
+                >
+                <button type="submit" class="login-btn">Acessar Painel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== PAINEL ADMIN ===== -->
+    <div id="adminPanel" class="admin-panel">
+        <header class="admin-header">
+            <div class="container admin-header-wrap">
+                <div class="admin-title">📊 Painel Administrativo</div>
+                <button class="logout-btn" onclick="handleLogout()">Sair</button>
+            </div>
+        </header>
+
+        <div class="container">
+            <!-- Navegação -->
+            <div class="admin-nav">
+                <button class="admin-nav-btn active" onclick="switchSection('noticias')">📰 Notícias</button>
+                <button class="admin-nav-btn" onclick="switchSection('eventos')">📅 Eventos</button>
+                <button class="admin-nav-btn" onclick="switchSection('galeria')">📸 Galeria</button>
+                <button class="admin-nav-btn" onclick="switchSection('mensagens')">💬 Mensagens</button>
+            </div>
+
+            <!-- SEÇÃO: NOTÍCIAS -->
+            <section id="noticias" class="section active">
+                <h2 class="section-title">Gerenciar Notícias</h2>
+
+                <div class="form-card">
+                    <h3>➕ Adicionar Nova Notícia</h3>
+                    <div id="newsSuccessMsg" class="success-message">✓ Notícia adicionada com sucesso!</div>
+                    
+                    <form id="newsForm" onsubmit="handleAddNews(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newsDate">Data da Notícia *</label>
+                                <input type="text" id="newsDate" name="newsDate" placeholder="Ex: 25 de setembro" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newsBadge">Categoria/Tipo *</label>
+                                <select id="newsBadge" name="newsBadge" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="🗓️ Evento">🗓️ Evento</option>
+                                    <option value="⚠️ Aviso">⚠️ Aviso</option>
+                                    <option value="🎨 Projeto">🎨 Projeto</option>
+                                    <option value="💻 Infraestrutura">💻 Infraestrutura</option>
+                                    <option value="🎉 Celebração">🎉 Celebração</option>
+                                    <option value="📚 Inscrição">📚 Inscrição</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsTitle">Título da Notícia *</label>
+                            <input type="text" id="newsTitle" name="newsTitle" placeholder="Ex: Reunião de Pais" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsContent">Conteúdo *</label>
+                            <textarea id="newsContent" name="newsContent" placeholder="Descreva a notícia..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Publicar Notícia</button>
+                    </form>
+                </div>
+
+                <h3 style="margin-top: 32px; color: var(--cinza-escuro);">Notícias Publicadas</h3>
+                <div id="newsList" class="items-list"></div>
+            </section>
+
+            <!-- SEÇÃO: EVENTOS/CALENDÁRIO -->
+            <section id="eventos" class="section">
+                <h2 class="section-title">Gerenciar Eventos</h2>
+
+                <div class="form-card">
+                    <h3>➕ Adicionar Novo Evento</h3>
+                    <div id="eventSuccessMsg" class="success-message">✓ Evento adicionado com sucesso!</div>
+                    
+                    <form id="eventForm" onsubmit="handleAddEvent(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventDate">Data do Evento *</label>
+                                <input type="date" id="eventDate" name="eventDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventDayDisplay">Dia (formato exibição) *</label>
+                                <input type="text" id="eventDayDisplay" name="eventDayDisplay" placeholder="Ex: 25/09" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventTitle">Título do Evento *</label>
+                            <input type="text" id="eventTitle" name="eventTitle" placeholder="Ex: Reunião de Pais" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventDescription">Descrição do Evento *</label>
+                            <textarea id="eventDescription" name="eventDescription" placeholder="Detalhes sobre o evento..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Adicionar ao Calendário</button>
+                    </form>
+                </div>
+
+                <h3 style="margin-top: 32px; color: var(--cinza-escuro);">Eventos Programados</h3>
+                <div id="eventsList" class="items-list"></div>
+            </section>
+
+            <!-- SEÇÃO: GALERIA -->
+            <section id="galeria" class="section">
+                <h2 class="section-title">Gerenciar Galeria</h2>
+
+                <div class="form-card">
+                    <h3>➕ Adicionar Foto à Galeria</h3>
+                    <div id="gallerySuccessMsg" class="success-message">✓ Foto adicionada com sucesso!</div>
+                    
+                    <form id="galleryForm" onsubmit="handleAddPhoto(event)">
+                        <div class="form-group">
+                            <label for="photoFile">Selecione a Imagem do seu Dispositivo *</label>
+                            <input type="file" id="photoFile" name="photoFile" accept="image/*" required>
+                            <div class="url-input-helper">
+                                📷 Selecione uma imagem do seu computador (JPEG, PNG, GIF, WebP)
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="photoTitle">Título da Foto *</label>
+                                <input type="text" id="photoTitle" name="photoTitle" placeholder="Ex: Festa Cultural" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="photoDate">Data/Ano *</label>
+                                <input type="text" id="photoDate" name="photoDate" placeholder="Ex: Evento 2025" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="photoCategory">Categorias *</label>
+                            <input type="text" id="photoCategory" name="photoCategory" placeholder="Ex: eventos, 2025 (separadas por vírgula)" required>
+                            <div class="url-input-helper">
+                                Use: eventos, projetos, apresentacoes, 2025, 2024, etc.
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Adicionar Foto</button>
+                    </form>
+                </div>
+
+                <h3 style="margin-top: 32px; color: var(--cinza-escuro);">Fotos da Galeria</h3>
+                <div id="galleryList" class="items-list"></div>
+                <div id="galleryPreview" class="gallery-preview"></div>
+            </section>
+
+            <!-- SEÇÃO: MENSAGENS -->
+            <section id="mensagens" class="section">
+                <h2 class="section-title">Gerenciar Mensagens</h2>
+
+                <div style="margin-bottom: 24px; display: flex; gap: 12px; align-items: center;">
+                    <div style="background: linear-gradient(135deg, var(--verde-claro), #dff5e8); padding: 12px 16px; border-radius: 12px; font-size: 0.9rem; color: var(--verde); font-weight: 600;">
+                        <span id="unreadCount">0</span> mensagem(ns) não lida(s)
+                    </div>
+                    <button onclick="markAllAsRead()" class="mark-read-btn">Marcar todas como lidas</button>
+                </div>
+
+                <div id="messagesList" class="items-list"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ===== MODAIS DE EDIÇÃO ===== -->
+    <!-- Modal Editar Notícia -->
+    <div id="editNewsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Editar Notícia</h3>
+                <button class="modal-close" onclick="closeModal('editNewsModal')">&times;</button>
+            </div>
+            <form id="editNewsForm" onsubmit="handleEditNews(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editNewsDate">Data da Notícia *</label>
+                        <input type="text" id="editNewsDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editNewsBadge">Categoria *</label>
+                        <select id="editNewsBadge" required>
+                            <option value="">Selecione...</option>
+                            <option value="🗓️ Evento">🗓️ Evento</option>
+                            <option value="⚠️ Aviso">⚠️ Aviso</option>
+                            <option value="🎨 Projeto">🎨 Projeto</option>
+                            <option value="💻 Infraestrutura">💻 Infraestrutura</option>
+                            <option value="🎉 Celebração">🎉 Celebração</option>
+                            <option value="📚 Inscrição">📚 Inscrição</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editNewsTitle">Título *</label>
+                    <input type="text" id="editNewsTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="editNewsContent">Conteúdo *</label>
+                    <textarea id="editNewsContent" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Editar Evento -->
+    <div id="editEventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Editar Evento</h3>
+                <button class="modal-close" onclick="closeModal('editEventModal')">&times;</button>
+            </div>
+            <form id="editEventForm" onsubmit="handleEditEvent(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editEventDate">Data *</label>
+                        <input type="date" id="editEventDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEventDayDisplay">Dia (exibição) *</label>
+                        <input type="text" id="editEventDayDisplay" placeholder="Ex: 25/09" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editEventTitle">Título *</label>
+                    <input type="text" id="editEventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="editEventDescription">Descrição *</label>
+                    <textarea id="editEventDescription" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Editar Foto -->
+    <div id="editPhotoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>✏️ Editar Foto</h3>
+                <button class="modal-close" onclick="closeModal('editPhotoModal')">&times;</button>
+            </div>
+            <form id="editPhotoForm" onsubmit="handleEditPhoto(event)">
+                <div class="form-group" style="text-align: center;">
+                    <img id="editPhotoPreview" style="max-width: 200px; max-height: 200px; border-radius: 12px; margin-bottom: 16px;">
+                </div>
+                <div class="form-group">
+                    <label for="editPhotoFile">Trocar Imagem (deixe em branco para manter)</label>
+                    <input type="file" id="editPhotoFile" accept="image/*">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="editPhotoTitle">Título *</label>
+                        <input type="text" id="editPhotoTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editPhotoDate">Data/Ano *</label>
+                        <input type="text" id="editPhotoDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="editPhotoCategory">Categorias *</label>
+                    <input type="text" id="editPhotoCategory" placeholder="eventos, 2025" required>
+                </div>
+                <button type="submit" class="submit-btn">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_CODE = "ESTRELA022011";
+
+        // ===== AUTENTICAÇÃO =====
+        function handleLogin(event) {
+            event.preventDefault();
+            const code = document.getElementById("accessCode").value;
+            const errorDiv = document.getElementById("loginError");
+
+            if (code === ADMIN_CODE) {
+                localStorage.setItem("adminAuthenticated", "true");
+                showAdminPanel();
+            } else {
+                errorDiv.textContent = "❌ Código de acesso inválido. Tente novamente.";
+                errorDiv.style.display = "block";
+                document.getElementById("accessCode").value = "";
+            }
+        }
+
+        function handleLogout() {
+            if (confirm("Tem certeza que deseja sair?")) {
+                localStorage.removeItem("adminAuthenticated");
+                document.getElementById("loginForm").reset();
+                document.getElementById("loginError").style.display = "none";
+                showLoginPanel();
+            }
+        }
+
+        function showLoginPanel() {
+            document.getElementById("loginWrapper").style.display = "flex";
+            document.getElementById("adminPanel").style.display = "none";
+        }
+
+        function showAdminPanel() {
+            document.getElementById("loginWrapper").style.display = "none";
+            document.getElementById("adminPanel").style.display = "block";
+            loadAllData();
+        }
+
+        // Verificar se já está autenticado
+        if (localStorage.getItem("adminAuthenticated") === "true") {
+            showAdminPanel();
+        }
+
+        // ===== NAVEGAÇÃO ENTRE SEÇÕES =====
+        function switchSection(sectionId) {
+            // Desativar todas as seções
+            document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+            document.querySelectorAll(".admin-nav-btn").forEach(b => b.classList.remove("active"));
+
+            // Ativar seção clicada
+            document.getElementById(sectionId).classList.add("active");
+            event.target.classList.add("active");
+        }
+
+        // ===== NOTÍCIAS =====
+        function handleAddNews(event) {
+            event.preventDefault();
+            
+            const news = {
+                id: Date.now(),
+                date: document.getElementById("newsDate").value,
+                badge: document.getElementById("newsBadge").value,
+                title: document.getElementById("newsTitle").value,
+                content: document.getElementById("newsContent").value,
+                createdAt: new Date().toLocaleString("pt-BR")
+            };
+
+            let newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+            newsList.unshift(news);
+            localStorage.setItem("newsList", JSON.stringify(newsList));
+
+            showSuccessMessage("newsSuccessMsg");
+            document.getElementById("newsForm").reset();
+            loadNewsList();
+            
+            // Atualizar no site principal
+            window.parent.location.reload();
+        }
+
+        function loadNewsList() {
+            const newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+            const container = document.getElementById("newsList");
+
+            if (newsList.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Nenhuma notícia publicada ainda.</p></div>';
+                return;
+            }
+
+            container.innerHTML = newsList.map(news => `
+                <div class="item-card">
+                    <div class="item-content">
+                        <h4>${news.title}</h4>
+                        <p>${news.content}</p>
+                        <div class="item-meta">
+                            <strong>${news.date}</strong> • ${news.badge}
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="openEditNewsModal(${news.id})">✏️ Editar</button>
+                        <button class="delete-btn" onclick="deleteNews(${news.id})">🗑️ Deletar</button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function deleteNews(id) {
+            if (confirm("Tem certeza que deseja deletar esta notícia?")) {
+                let newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+                newsList = newsList.filter(n => n.id !== id);
+                localStorage.setItem("newsList", JSON.stringify(newsList));
+                loadNewsList();
+            }
+        }
+
+        function openEditNewsModal(id) {
+            const newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+            const news = newsList.find(n => n.id === id);
+            
+            if (!news) return;
+
+            document.getElementById("editNewsDate").value = news.date;
+            document.getElementById("editNewsBadge").value = news.badge;
+            document.getElementById("editNewsTitle").value = news.title;
+            document.getElementById("editNewsContent").value = news.content;
+            document.getElementById("editNewsForm").dataset.id = id;
+
+            openModal("editNewsModal");
+        }
+
+        function handleEditNews(event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById("editNewsForm").dataset.id);
+            
+            let newsList = JSON.parse(localStorage.getItem("newsList")) || [];
+            const index = newsList.findIndex(n => n.id === id);
+            
+            if (index !== -1) {
+                newsList[index] = {
+                    ...newsList[index],
+                    date: document.getElementById("editNewsDate").value,
+                    badge: document.getElementById("editNewsBadge").value,
+                    title: document.getElementById("editNewsTitle").value,
+                    content: document.getElementById("editNewsContent").value
+                };
+                localStorage.setItem("newsList", JSON.stringify(newsList));
+                closeModal("editNewsModal");
+                loadNewsList();
+                showSuccessMessage("newsSuccessMsg");
+            }
+        }
+
+        // ===== EVENTOS =====
+        function handleAddEvent(event) {
+            event.preventDefault();
+            
+            const eventData = {
+                id: Date.now(),
+                date: document.getElementById("eventDate").value,
+                dayDisplay: document.getElementById("eventDayDisplay").value,
+                title: document.getElementById("eventTitle").value,
+                description: document.getElementById("eventDescription").value,
+                createdAt: new Date().toLocaleString("pt-BR")
+            };
+
+            let eventsList = JSON.parse(localStorage.getItem("eventsList")) || [];
+            eventsList.unshift(eventData);
+            localStorage.setItem("eventsList", JSON.stringify(eventsList));
+
+            showSuccessMessage("eventSuccessMsg");
+            document.getElementById("eventForm").reset();
+            loadEventsList();
+        }
+
+        function loadEventsList() {
+            const eventsList = JSON.parse(localStorage.getItem("eventsList")) || [];
+            const container = document.getElementById("eventsList");
+
+            if (eventsList.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Nenhum evento programado ainda.</p></div>';
+                return;
+            }
+
+            container.innerHTML = eventsList.map(evt => `
+                <div class="item-card">
+                    <div class="item-content">
+                        <h4>${evt.title}</h4>
+                        <p>${evt.description}</p>
+                        <div class="item-meta">
+                            📅 ${evt.dayDisplay}
+                        </div>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="openEditEventModal(${evt.id})">✏️ Editar</button>
+                        <button class="delete-btn" onclick="deleteEvent(${evt.id})">🗑️ Deletar</button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function deleteEvent(id) {
+            if (confirm("Tem certeza que deseja deletar este evento?")) {
+                let eventsList = JSON.parse(localStorage.getItem("eventsList")) || [];
+                eventsList = eventsList.filter(e => e.id !== id);
+                localStorage.setItem("eventsList", JSON.stringify(eventsList));
+                loadEventsList();
+            }
+        }
+
+        // ===== GALERIA =====
+        function handleAddPhoto(event) {
+            event.preventDefault();
+            
+            const fileInput = document.getElementById("photoFile");
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Por favor, selecione uma imagem.");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const photo = {
+                    id: Date.now(),
+                    url: e.target.result, // Base64
+                    title: document.getElementById("photoTitle").value,
+                    date: document.getElementById("photoDate").value,
+                    categories: document.getElementById("photoCategory").value.split(",").map(c => c.trim()),
+                    createdAt: new Date().toLocaleString("pt-BR")
+                };
+
+                let galleryList = JSON.parse(localStorage.getItem("galleryList")) || [];
+                galleryList.unshift(photo);
+                localStorage.setItem("galleryList", JSON.stringify(galleryList));
+
+                showSuccessMessage("gallerySuccessMsg");
+                document.getElementById("galleryForm").reset();
+                loadGalleryList();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function loadGalleryList() {
+            const galleryList = JSON.parse(localStorage.getItem("galleryList")) || [];
+            const container = document.getElementById("galleryList");
+            const preview = document.getElementById("galleryPreview");
+
+            if (galleryList.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Nenhuma foto na galeria ainda.</p></div>';
+                preview.innerHTML = "";
+                return;
+            }
+
+            container.innerHTML = galleryList.map(photo => `
+                <div class="item-card">
+                    <div class="item-content">
+                        <h4>${photo.title}</h4>
+                        <p>${photo.date} • ${photo.categories.join(", ")}</p>
+                    </div>
+                    <div class="item-actions">
+                        <button class="edit-btn" onclick="openEditPhotoModal(${photo.id})">✏️ Editar</button>
+                        <button class="delete-btn" onclick="deletePhoto(${photo.id})">🗑️ Deletar</button>
+                    </div>
+                </div>
+            `).join("");
+
+            preview.innerHTML = galleryList.map(photo => `
+                <div class="gallery-thumb">
+                    <img src="${photo.url}" alt="${photo.title}" onerror="this.src='https://via.placeholder.com/300?text=Erro'">
+                </div>
+            `).join("");
+        }
+
+        function deletePhoto(id) {
+            if (confirm("Tem certeza que deseja deletar esta foto?")) {
+                let galleryList = JSON.parse(localStorage.getItem("galleryList")) || [];
+                galleryList = galleryList.filter(p => p.id !== id);
+                localStorage.setItem("galleryList", JSON.stringify(galleryList));
+                loadGalleryList();
+            }
+        }
+
+        // ===== MENSAGENS =====
+        function loadMessagesList() {
+            const messagesList = JSON.parse(localStorage.getItem("contactMessages")) || [];
+            const container = document.getElementById("messagesList");
+            const unreadCount = messagesList.filter(m => !m.lida).length;
+
+            document.getElementById("unreadCount").textContent = unreadCount;
+
+            if (messagesList.length === 0) {
+                container.innerHTML = '<div class="empty-state"><p>Nenhuma mensagem recebida ainda.</p></div>';
+                return;
+            }
+
+            container.innerHTML = messagesList.map(msg => `
+                <div class="message-card ${msg.lida ? '' : 'unread'}">
+                    <div style="width: 100%;">
+                        <div class="message-header">
+                            <h4>${msg.nome}</h4>
+                            ${!msg.lida ? '<span class="message-badge-unread">Não lida</span>' : ''}
+                        </div>
+                        <div class="message-meta">
+                            <div class="message-meta-item">
+                                <strong>Email:</strong> ${msg.email}
+                            </div>
+                            ${msg.telefone ? `<div class="message-meta-item"><strong>Telefone:</strong> ${msg.telefone}</div>` : ''}
+                            <div class="message-meta-item">
+                                <strong>Relação:</strong> ${msg.relacao}
+                            </div>
+                            <div class="message-meta-item">
+                                <strong>Assunto:</strong> ${msg.assunto}
+                            </div>
+                            <div class="message-meta-item">
+                                <strong>Data:</strong> ${msg.data}
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            ${msg.mensagem.replace(/\n/g, '<br>')}
+                        </div>
+                    </div>
+                    <div class="message-actions-right">
+                        <button class="mark-read-btn ${msg.lida ? 'read' : ''}" onclick="toggleReadMessage(${msg.id})" ${msg.lida ? 'disabled' : ''}>
+                            ${msg.lida ? '✓ Lida' : '👁️ Marcar lida'}
+                        </button>
+                        <button class="delete-btn" onclick="deleteMessage(${msg.id})">🗑️ Deletar</button>
+                    </div>
+                </div>
+            `).join("");
+        }
+
+        function toggleReadMessage(id) {
+            let messagesList = JSON.parse(localStorage.getItem("contactMessages")) || [];
+            const index = messagesList.findIndex(m => m.id === id);
+            
+            if (index !== -1) {
+                messagesList[index].lida = true;
+                localStorage.setItem("contactMessages", JSON.stringify(messagesList));
+                loadMessagesList();
+            }
+        }
+
+        function deleteMessage(id) {
+            if (confirm("Tem certeza que deseja deletar esta mensagem?")) {
+                let messagesList = JSON.parse(localStorage.getItem("contactMessages")) || [];
+                messagesList = messagesList.filter(m => m.id !== id);
+                localStorage.setItem("contactMessages", JSON.stringify(messagesList));
+                loadMessagesList();
+            }
+        }
+
+        function markAllAsRead() {
+            let messagesList = JSON.parse(localStorage.getItem("contactMessages")) || [];
+            messagesList.forEach(m => m.lida = true);
+            localStorage.setItem("contactMessages", JSON.stringify(messagesList));
+            loadMessagesList();
+        }
+
+        // ===== FUNÇÕES DE EDIÇÃO =====
+        function openEditEventModal(id) {
+            const eventsList = JSON.parse(localStorage.getItem("eventsList")) || [];
+            const evt = eventsList.find(e => e.id === id);
+            
+            if (!evt) return;
+
+            document.getElementById("editEventDate").value = evt.date;
+            document.getElementById("editEventDayDisplay").value = evt.dayDisplay;
+            document.getElementById("editEventTitle").value = evt.title;
+            document.getElementById("editEventDescription").value = evt.description;
+            document.getElementById("editEventForm").dataset.id = id;
+
+            openModal("editEventModal");
+        }
+
+        function handleEditEvent(event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById("editEventForm").dataset.id);
+            
+            let eventsList = JSON.parse(localStorage.getItem("eventsList")) || [];
+            const index = eventsList.findIndex(e => e.id === id);
+            
+            if (index !== -1) {
+                eventsList[index] = {
+                    ...eventsList[index],
+                    date: document.getElementById("editEventDate").value,
+                    dayDisplay: document.getElementById("editEventDayDisplay").value,
+                    title: document.getElementById("editEventTitle").value,
+                    description: document.getElementById("editEventDescription").value
+                };
+                localStorage.setItem("eventsList", JSON.stringify(eventsList));
+                closeModal("editEventModal");
+                loadEventsList();
+                showSuccessMessage("eventSuccessMsg");
+            }
+        }
+
+        function openEditPhotoModal(id) {
+            const galleryList = JSON.parse(localStorage.getItem("galleryList")) || [];
+            const photo = galleryList.find(p => p.id === id);
+            
+            if (!photo) return;
+
+            document.getElementById("editPhotoPreview").src = photo.url;
+            document.getElementById("editPhotoTitle").value = photo.title;
+            document.getElementById("editPhotoDate").value = photo.date;
+            document.getElementById("editPhotoCategory").value = photo.categories.join(", ");
+            document.getElementById("editPhotoForm").dataset.id = id;
+
+            openModal("editPhotoModal");
+        }
+
+        function handleEditPhoto(event) {
+            event.preventDefault();
+            const id = parseInt(document.getElementById("editPhotoForm").dataset.id);
+            const fileInput = document.getElementById("editPhotoFile");
+            
+            let galleryList = JSON.parse(localStorage.getItem("galleryList")) || [];
+            const index = galleryList.findIndex(p => p.id === id);
+            
+            if (index === -1) return;
+
+            if (fileInput.files.length > 0) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    galleryList[index] = {
+                        ...galleryList[index],
+                        url: e.target.result,
+                        title: document.getElementById("editPhotoTitle").value,
+                        date: document.getElementById("editPhotoDate").value,
+                        categories: document.getElementById("editPhotoCategory").value.split(",").map(c => c.trim())
+                    };
+                    localStorage.setItem("galleryList", JSON.stringify(galleryList));
+                    closeModal("editPhotoModal");
+                    loadGalleryList();
+                    showSuccessMessage("gallerySuccessMsg");
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                galleryList[index] = {
+                    ...galleryList[index],
+                    title: document.getElementById("editPhotoTitle").value,
+                    date: document.getElementById("editPhotoDate").value,
+                    categories: document.getElementById("editPhotoCategory").value.split(",").map(c => c.trim())
+                };
+                localStorage.setItem("galleryList", JSON.stringify(galleryList));
+                closeModal("editPhotoModal");
+                loadGalleryList();
+                showSuccessMessage("gallerySuccessMsg");
+            }
+        }
+
+        // ===== CONTROLE DE MODAIS =====
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add("active");
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove("active");
+        }
+
+        // Fechar modal ao clicar fora
+        window.addEventListener("click", function(event) {
+            if (event.target.classList.contains("modal")) {
+                event.target.classList.remove("active");
+            }
+        });
+
+        // ===== UTILIDADES =====
+        function showSuccessMessage(elementId) {
+            const msg = document.getElementById(elementId);
+            msg.style.display = "block";
+            setTimeout(() => {
+                msg.style.display = "none";
+            }, 3000);
+        }
+
+        function loadAllData() {
+            loadNewsList();
+            loadEventsList();
+            loadGalleryList();
+            loadMessagesList();
+        }
+
+        // Carregar dados ao abrir
+        if (localStorage.getItem("adminAuthenticated") === "true") {
+            loadAllData();
+        }
+    </script>
+</body>
+</html>
 
