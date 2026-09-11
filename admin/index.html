@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Painel Administrativo - Colégio Estadual Estrela do Oeste</title>
-    <link rel="icon" href="https://cdn.pixabay.com/photo/2016/03/31/15/16/computer-1293125_1280.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -64,6 +63,8 @@
         max-width: 420px;
         width: 100%;
         text-align: center;
+        position: relative;
+
       }
 
       .login-container h1 {
@@ -605,12 +606,43 @@
           overflow-x: auto;
         }
       }
+
+      .botao-lateral {
+    position: absolute;
+    left: 15px;
+    top: 20px;
+    transform: translateY(-50%);
+
+    padding: 6px 20px;
+    border: none;
+    border-radius: 7px;
+
+    background: #168052;
+    color: white;
+
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+   
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+
+    transition: 0.2s;
+}
+
+.botao-lateral:hover {
+    background: #0f6842;
+    transform: translateY(-50%) scale(1.05);
+}
+
     </style>
 </head>
 <body>
     <!-- ===== LOGIN ===== -->
     <div id="loginWrapper" class="login-wrapper">
         <div class="login-container">
+            <button class="botao-lateral" onclick="history.back()">← Voltar</button>
             <h1>🔐 Painel Admin</h1>
             <p>Colégio Estadual Estrela do Oeste</p>
             
@@ -1388,4 +1420,3 @@
     </script>
 </body>
 </html>
-
